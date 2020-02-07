@@ -5,7 +5,7 @@ import {Observer} from "rxjs/Observer";
 import {CartItem} from "../models/cart-item.model";
 import {Product} from "../models/product.model";
 import {ShoppingCart} from "../models/shopping-cart.model";
-import {ProductsDataService} from "../services/products.service";
+import {ProductsDataService} from "./products.service";
 
 const CART_KEY = "cart";
 
