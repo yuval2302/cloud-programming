@@ -1,13 +1,11 @@
-import { Injectable } from "@angular/core";
-import { StorageService } from "app/services/storage.service";
-import { Observable } from "rxjs/Observable";
-import { Observer } from "rxjs/Observer";
-import { CartItem } from "../models/cart-item.model";
-import { DeliveryOption } from "../models/delivery-option.model";
-import { Product } from "../models/product.model";
-import { ShoppingCart } from "../models/shopping-cart.model";
-import { DeliveryOptionsDataService } from "../services/delivery-options.service";
-import { ProductsDataService } from "../services/products.service";
+import {Injectable} from "@angular/core";
+import {StorageService} from "app/services/storage.service";
+import {Observable} from "rxjs/Observable";
+import {Observer} from "rxjs/Observer";
+import {CartItem} from "../models/cart-item.model";
+import {Product} from "../models/product.model";
+import {ShoppingCart} from "../models/shopping-cart.model";
+import {ProductsDataService} from "../services/products.service";
 
 const CART_KEY = "cart";
 
@@ -17,14 +15,11 @@ export class ShoppingCartService {
   private subscriptionObservable: Observable<ShoppingCart>;
   private subscribers: Array<Observer<ShoppingCart>> = new Array<Observer<ShoppingCart>>();
   private products: Product[];
-  private deliveryOptions: DeliveryOption[];
 
   public constructor(private storageService: StorageService,
-                     private productService: ProductsDataService,
-                     private deliveryOptionsService: DeliveryOptionsDataService) {
+                     private productService: ProductsDataService) {
     this.storage = this.storageService.get();
     this.productService.all().subscribe((products) => this.products = products);
-    this.deliveryOptionsService.all().subscribe((options) => this.deliveryOptions = options);
 
     this.subscriptionObservable = new Observable<ShoppingCart>((observer: Observer<ShoppingCart>) => {
       this.subscribers.push(observer);
@@ -51,7 +46,6 @@ export class ShoppingCartService {
     item.quantity += quantity;
     cart.items = cart.items.filter((cartItem) => cartItem.quantity > 0);
     if (cart.items.length === 0) {
-      cart.deliveryOptionId = undefined;
     }
 
     this.calculateCart(cart);
@@ -65,21 +59,10 @@ export class ShoppingCartService {
     this.dispatch(newCart);
   }
 
-  public setDeliveryOption(deliveryOption: DeliveryOption): void {
-    const cart = this.retrieve();
-    cart.deliveryOptionId = deliveryOption.id;
-    this.calculateCart(cart);
-    this.save(cart);
-    this.dispatch(cart);
-  }
-
   private calculateCart(cart: ShoppingCart): void {
     cart.itemsTotal = cart.items
-                          .map((item) => item.quantity * this.products.find((p) => p.id === item.productId).price)
-                          .reduce((previous, current) => previous + current, 0);
-    cart.deliveryTotal = cart.deliveryOptionId ?
-                          this.deliveryOptions.find((x) => x.id === cart.deliveryOptionId).price :
-                          0;
+      .map((item) => item.quantity * this.products.find((p) => p.id === item.productId).price)
+      .reduce((previous, current) => previous + current, 0);
     cart.grossTotal = cart.itemsTotal + cart.deliveryTotal;
   }
 
@@ -99,12 +82,12 @@ export class ShoppingCartService {
 
   private dispatch(cart: ShoppingCart): void {
     this.subscribers
-        .forEach((sub) => {
-          try {
-            sub.next(cart);
-          } catch (e) {
-            // we want all subscribers to get the update even if one errors.
-          }
-        });
+      .forEach((sub) => {
+        try {
+          sub.next(cart);
+        } catch (e) {
+          // we want all subscribers to get the update even if one errors.
+        }
+      });
   }
 }

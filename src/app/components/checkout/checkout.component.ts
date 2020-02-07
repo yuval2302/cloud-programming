@@ -1,9 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from "@angular/core";
 import { CartItem } from "app/models/cart-item.model";
-import { DeliveryOption } from "app/models/delivery-option.model";
 import { Product } from "app/models/product.model";
 import { ShoppingCart } from "app/models/shopping-cart.model";
-import { DeliveryOptionsDataService } from "app/services/delivery-options.service";
 import { ProductsDataService } from "app/services/products.service";
 import { ShoppingCartService } from "app/services/shopping-cart.service";
 import { Observable } from "rxjs/Observable";
@@ -20,7 +18,6 @@ interface ICartItemWithProduct extends CartItem {
   templateUrl: "./checkout.component.html"
 })
 export class CheckoutComponent implements OnInit, OnDestroy {
-  public deliveryOptions: Observable<DeliveryOption[]>;
   public cart: Observable<ShoppingCart>;
   public cartItems: ICartItemWithProduct[];
   public itemCount: number;
@@ -29,7 +26,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   private cartSubscription: Subscription;
 
   public constructor(private productsService: ProductsDataService,
-                     private deliveryOptionService: DeliveryOptionsDataService,
                      private shoppingCartService: ShoppingCartService) {
   }
 
@@ -37,12 +33,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.shoppingCartService.empty();
   }
 
-  public setDeliveryOption(option: DeliveryOption): void {
-    this.shoppingCartService.setDeliveryOption(option);
-  }
-
   public ngOnInit(): void {
-    this.deliveryOptions = this.deliveryOptionService.all();
     this.cart = this.shoppingCartService.get();
     this.cartSubscription = this.cart.subscribe((cart) => {
       this.itemCount = cart.items.map((x) => x.quantity).reduce((p, n) => p + n, 0);

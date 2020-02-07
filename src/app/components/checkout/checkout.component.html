@@ -12,18 +12,16 @@
     </h4>
   </div>
   <div class="medium-4 columns text-right">
-    <h5 class="text--red"
-       *ngIf="(cart | async).deliveryOptionId === undefined">Please select a delivery option...</h5>
-    <a class="success button large"
-       *ngIf="(cart | async).deliveryOptionId !== undefined"
+    <a class="success button expanded"
        routerLink="/confirmed">Purchase Order</a>
+    <a class="warning button expanded"
+       routerLink="/">Continue Shopping</a>
   </div>
   <hr/>
 </div>
 <div class="row">
   <div class="medium-8 columns">
     <h4>Delivery 1 of 1</h4>
-    <small>Dispatching to the UK....</small>
     <div class="row checkout_row"
         *ngFor="let item of cartItems">
       <div class="medium-2 columns text-center">
@@ -40,14 +38,6 @@
       <div class="medium-3 columns text-right">
           <p class="text--bold text--red js-product-total">{{item.totalCost | currency:'GBP':true}}</p>
       </div>
-    </div>
-  </div>
-
-
-  <div class="row">
-    <div class="small-10 columns small-centered">
-      <a class="warning button expanded"
-        routerLink="/">Continue Shopping</a>
     </div>
   </div>
 </div>
