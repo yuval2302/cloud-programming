@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="top-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li class="menu-text">
+        <button type="button" class="btn btn-secondary" (click)="changeView(false)">Products</button>
+      </li>
+      <li class="menu-text">
+        <button type="button" class="btn btn-secondary" (click)="changeView(true)">add Product</button>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div *ngIf="isAddProductMode">
+  <h3>add Product</h3>
+  <form>
+    <div class="form-group">
+      <label>name</label>
+      <input type="text" class="form-control" id="nameInput" placeholder="Enter name">
+    </div>
+    <div class="form-group">
+      <label>description</label>
+      <input type="text" class="form-control" id="descriptionInput" placeholder="Enter description">
+    </div>
+    <div class="form-group">
+      <label>price</label>
+      <input type="number" class="form-control" id="priceInput" placeholder="Enter price">
+    </div>
+    <button type="submit" class="button">Save</button>
+  </form>
+</div>
+
+<div *ngIf="!isAddProductMode">
+  <h3>All Products</h3>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of (products | async)">
+      <th scope="row">1</th>
+      <td>{{item.name}}</td>
+      <td>{{item.description}}</td>
+      <td>{{item.price}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
