@@ -22,7 +22,6 @@ import {ManagerComponent} from "./components/manager/manager.component";
                 path: "confirmed"
             },
           {
-            canActivate: [PopulatedCartRouteGuard],
             component: ManagerComponent,
             path: "manager"
           },
