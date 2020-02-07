@@ -1,6 +1,4 @@
-import { Injectable } from "@angular/core";
-import "rxjs/add/operator/share";
-import { Observable } from "rxjs/Observable";
+import {Injectable} from '@angular/core';
 
 export abstract class StorageService {
   public abstract get(): Storage;

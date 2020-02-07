@@ -18,11 +18,11 @@
               <p>
                 <button type="button"
                         class="button success large js-btn-add"
-                        (click)="addProductToCart(product, 1)">Add To Cart</button>
+                        (click)="addProductToCart(product)">Add To Cart</button>
                 <button type="button"
                         class="button small js-btn-remove"
                         *ngIf="productInCart(product) | async"
-                        (click)="removeProductFromCart(product, 1)">Remove item from cart</button>
+                        (click)="removeProductFromCart(product)">Remove item from cart</button>
               </p>
             </div>
           </div>

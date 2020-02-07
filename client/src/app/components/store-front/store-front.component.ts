@@ -1,16 +1,14 @@
-import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
-import { Product } from "../../models/product.model";
-import { ShoppingCart } from "../../models/shopping-cart.model";
-import { ProductsDataService } from "../../services/products.service";
-import { ShoppingCartService } from "../../services/shopping-cart.service";
-import { Observable } from "rxjs/Observable";
-import { Observer } from "rxjs/Observer";
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {Product} from '../../models/product.model';
+import {ProductsDataService} from '../../services/products.service';
+import {ShoppingCartService} from '../../services/shopping-cart.service';
+import {Observable, Observer} from 'rxjs';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  selector: "app-store-front",
-  styleUrls: ["./store-front.component.scss"],
-  templateUrl: "./store-front.component.html"
+  selector: 'app-store-front',
+  styleUrls: ['./store-front.component.scss'],
+  templateUrl: './store-front.component.html'
 })
 export class StoreFrontComponent implements OnInit {
   public products: Observable<Product[]>;
@@ -27,14 +25,14 @@ export class StoreFrontComponent implements OnInit {
     this.shoppingCartService.addItem(product, -1);
   }
 
-  public productInCart(product: Product): boolean {
+  public productInCart(product: Product): any {
     return Observable.create((obs: Observer<boolean>) => {
       const sub = this.shoppingCartService
-                      .get()
-                      .subscribe((cart) => {
-                        obs.next(cart.items.some((i) => i.productId === product.id));
-                        obs.complete();
-                      });
+        .get()
+        .subscribe((cart) => {
+          obs.next(cart.items.some((i) => i.productId === product.id));
+          obs.complete();
+        });
       sub.unsubscribe();
     });
   }

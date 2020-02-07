@@ -1,13 +1,13 @@
-import {Injectable} from "@angular/core";
-import {StorageService} from "../services/storage.service";
-import {Observable} from "rxjs/Observable";
-import {Observer} from "rxjs/Observer";
-import {CartItem} from "../models/cart-item.model";
-import {Product} from "../models/product.model";
-import {ShoppingCart} from "../models/shopping-cart.model";
-import {ProductsDataService} from "./products.service";
+import {Injectable} from '@angular/core';
+import {StorageService} from '../services/storage.service';
+import {CartItem} from '../models/cart-item.model';
+import {Product} from '../models/product.model';
+import {ShoppingCart} from '../models/shopping-cart.model';
+import {ProductsDataService} from './products.service';
+import {Observable, Observer} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
 
-const CART_KEY = "cart";
+const CART_KEY = 'cart';
 
 @Injectable()
 export class ShoppingCartService {
@@ -16,7 +16,8 @@ export class ShoppingCartService {
   private subscribers: Array<Observer<ShoppingCart>> = new Array<Observer<ShoppingCart>>();
   private products: Product[];
 
-  public constructor(private storageService: StorageService,
+  public constructor(private http: HttpClient,
+                     private storageService: StorageService,
                      private productService: ProductsDataService) {
     this.storage = this.storageService.get();
     this.productService.all().subscribe((products) => this.products = products);
@@ -28,6 +29,12 @@ export class ShoppingCartService {
         this.subscribers = this.subscribers.filter((obs) => obs !== observer);
       };
     });
+  }
+
+  public saveOrder() {
+    this.http.get('http://localhost:3000/order', {responseType: 'text'}).subscribe(res => {
+      alert(res);
+    }, err => console.log(err));
   }
 
   public get(): Observable<ShoppingCart> {

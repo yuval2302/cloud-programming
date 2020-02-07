@@ -1,15 +1,14 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from "@angular/core";
-import { Product } from "../../models/product.model";
-import { ShoppingCart } from "../../models/shopping-cart.model";
-import { ProductsDataService } from "../../services/products.service";
-import { ShoppingCartService } from "../../services/shopping-cart.service";
-import { Observable } from "rxjs/Observable";
-import { Subscription } from "rxjs/Subscription";
+import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
+import {Product} from '../../models/product.model';
+import {ShoppingCart} from '../../models/shopping-cart.model';
+import {ProductsDataService} from '../../services/products.service';
+import {ShoppingCartService} from '../../services/shopping-cart.service';
+import {Observable, Subscription} from 'rxjs';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  selector: "app-shopping-cart",
-  templateUrl: "./shopping-cart.component.html"
+  selector: 'app-shopping-cart',
+  templateUrl: './shopping-cart.component.html'
 })
 export class ShoppingCartComponent implements OnInit, OnDestroy {
   public products: Observable<Product[]>;

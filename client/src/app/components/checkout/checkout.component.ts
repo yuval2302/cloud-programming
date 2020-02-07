@@ -1,11 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from "@angular/core";
-import { CartItem } from "../../models/cart-item.model";
-import { Product } from "../../models/product.model";
-import { ShoppingCart } from "../../models/shopping-cart.model";
-import { ProductsDataService } from "../../services/products.service";
-import { ShoppingCartService } from "../../services/shopping-cart.service";
-import { Observable } from "rxjs/Observable";
-import { Subscription } from "rxjs/Subscription";
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {CartItem} from '../../models/cart-item.model';
+import {Product} from '../../models/product.model';
+import {ShoppingCart} from '../../models/shopping-cart.model';
+import {ProductsDataService} from '../../services/products.service';
+import {ShoppingCartService} from '../../services/shopping-cart.service';
+import {Observable, Subscription} from 'rxjs';
 
 interface ICartItemWithProduct extends CartItem {
   product: Product;
@@ -13,9 +12,9 @@ interface ICartItemWithProduct extends CartItem {
 }
 
 @Component({
-  selector: "app-checkout",
-  styleUrls: ["./checkout.component.scss"],
-  templateUrl: "./checkout.component.html"
+  selector: 'app-checkout',
+  styleUrls: ['./checkout.component.scss'],
+  templateUrl: './checkout.component.html'
 })
 export class CheckoutComponent implements OnInit, OnDestroy {
   public cart: Observable<ShoppingCart>;
@@ -40,13 +39,14 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       this.productsService.all().subscribe((products) => {
         this.products = products;
         this.cartItems = cart.items
-                           .map((item) => {
-                              const product = this.products.find((p) => p.id === item.productId);
-                              return {
-                                ...item,
-                                product,
-                                totalCost: product.price * item.quantity };
-                           });
+          .map((item) => {
+            const product = this.products.find((p) => p.id === item.productId);
+            return {
+              ...item,
+              product,
+              totalCost: product.price * item.quantity
+            };
+          });
       });
     });
   }

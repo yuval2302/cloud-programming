@@ -4,7 +4,7 @@ export class Product {
   public description: string;
   public price: number;
 
-  public updateFrom(src: Product): void {
+  public updateFrom(src: any): void {
     this.id = src.id;
     this.name = src.name;
     this.description = src.description;
