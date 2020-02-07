@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {StorageService} from "app/services/storage.service";
+import {StorageService} from "../services/storage.service";
 import {Observable} from "rxjs/Observable";
 import {Observer} from "rxjs/Observer";
 import {CartItem} from "../models/cart-item.model";
