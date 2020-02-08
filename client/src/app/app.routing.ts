@@ -6,6 +6,7 @@ import {OrderConfirmationComponent} from './components/order-confirmation/order-
 import {StoreFrontComponent} from './components/store-front/store-front.component';
 import {PopulatedCartRouteGuard} from './route-gaurds/populated-cart.route-gaurd';
 import {ManagerComponent} from './components/manager/manager.component';
+import {OrdersComponent} from "./components/orders/orders.component";
 
 @NgModule({
   exports: [RouterModule],
@@ -24,6 +25,10 @@ import {ManagerComponent} from './components/manager/manager.component';
       {
         component: ManagerComponent,
         path: 'manager'
+      },
+      {
+        component: OrdersComponent,
+        path: 'orders'
       },
       {
         component: StoreFrontComponent,

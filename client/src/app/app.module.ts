@@ -14,6 +14,8 @@ import {ShoppingCartService} from './services/shopping-cart.service';
 import {LocalStorageServie, StorageService} from './services/storage.service';
 import {ManagerComponent} from './components/manager/manager.component';
 import {HttpClientModule} from '@angular/common/http';
+import {OrdersComponent} from './components/orders/orders.component';
+import {OrdersService} from './services/orders.service';
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -23,7 +25,8 @@ import {HttpClientModule} from '@angular/common/http';
     StoreFrontComponent,
     CheckoutComponent,
     OrderConfirmationComponent,
-    ManagerComponent
+    ManagerComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +39,7 @@ import {HttpClientModule} from '@angular/common/http';
     PopulatedCartRouteGuard,
     LocalStorageServie,
     ShoppingCartService,
+    OrdersService,
     {provide: StorageService, useClass: LocalStorageServie},
 
   ]
