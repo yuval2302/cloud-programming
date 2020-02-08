@@ -25,9 +25,9 @@ app.use(function (req, res, next) {
 var mysql = require('mysql');
 
 var con = mysql.createConnection({
-    host: "localhost",
-    user: "yourusername",
-    password: "yourpassword"
+    host: "database-1.c0otnxcm1jip.us-east-1.rds.amazonaws.com",
+    user: "root",
+    password: "Aa123456",
 });
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -41,7 +41,9 @@ app.get('/', (req, res) => {
 
 app.get('/order', (req, res) => {
     let sql = "SELECT * from order;";
-    res.send('Hello World!')
+    mysql.createQuery(sql, (val) => {
+        res.send(val)
+    });
 });
 
 app.post('/order', (req, res) => {
