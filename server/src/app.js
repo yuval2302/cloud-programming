@@ -40,19 +40,19 @@ app.get('/', (req, res) => {
 });
 
 app.get('/order', (req, res) => {
-    let sql = "SELECT * from orders;";
+    let sql = "SELECT * from order;";
     res.send('Hello World!')
 });
 
 app.post('/order', (req, res) => {
     let newOrder = req.body;
     // order number and date
-    let sql = `INSERT INTO orders VALUES ();`;
+    let sql = `INSERT INTO order VALUES ();`;
     res.send('Hello World!')
 });
 
 app.get('/product', (req, res) => {
-    let sql = "SELECT * from products;";
+    let sql = "SELECT * from product;";
     res.send('Hello World!')
 });
 
