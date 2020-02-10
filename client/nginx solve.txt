@@ -1,0 +1,3 @@
+cp dist to /usr/share/nginx/html
+chmod 644 * -R
+chcon -R -u system_u -r object_r -t httpd_sys_content_t *
