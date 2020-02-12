@@ -1,25 +1,26 @@
 import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Injectable()
 export class OrdersService {
-
-  constructor() {
+  public orders: any = [];
+  constructor(private http: HttpClient) {
   }
 
   public getAllOrders() {
-    return [
-      {
-        id: 1,
-        date: '08.02.2020'
-      },
-      {
-        id: 2,
-        date: '05.02.2020'
-      },
-      {
-        id: 3,
-        date: '07.02.2020'
-      }
-    ];
+    this.http.get('http://localhost:3000/order', {responseType: 'json'}).subscribe(orders => {
+      this.orders = orders;
+    })
+  }
+
+  public newOrder(): void {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'content-type':  'application/json',
+      })
+    };
+    this.http.post('http://localhost:3000/order', {responseType: 'json'}, httpOptions).subscribe(orders => {
+      this.orders = orders;
+    });
   }
 }

@@ -13,7 +13,7 @@ export class OrdersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.orders = this.ordersService.getAllOrders();
+    this.orders = this.ordersService.orders;
   }
 
 }
