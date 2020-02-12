@@ -10,7 +10,7 @@ import {ProductsDataService} from '../../services/products.service';
 })
 export class ManagerComponent implements OnInit {
   public isAddProductMode: boolean = false;
-  public products: Observable<Product[]>;
+  public products: Observable<any>;
 
   public constructor(private productsService: ProductsDataService, private shoppingCartService: ShoppingCartService) {
   }
