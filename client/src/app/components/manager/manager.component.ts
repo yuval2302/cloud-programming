@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ShoppingCartService} from '../../services/shopping-cart.service';
-import {Observable} from 'rxjs';
+import {Observable} from 'rxjs';;
 import {Product} from '../../models/product.model';
 import {ProductsDataService} from '../../services/products.service';
 
@@ -11,12 +11,25 @@ import {ProductsDataService} from '../../services/products.service';
 export class ManagerComponent implements OnInit {
   public isAddProductMode: boolean = false;
   public products: Observable<Product[]>;
+  public newProduct: Product = new Product();
 
   public constructor(private productsService: ProductsDataService, private shoppingCartService: ShoppingCartService) {
   }
 
   public ngOnInit(): void {
     this.products = this.productsService.all();
+  }
+
+  public onDelete(id: string) {
+    this.productsService.delete(id).subscribe(value => {
+      this.products = this.productsService.all();
+    });
+  }
+
+  public onSave() {
+    this.productsService.save(this.newProduct).subscribe(value => {
+      this.products = this.productsService.all();
+    });
   }
 
   public changeView(shouldAddProduct) {
