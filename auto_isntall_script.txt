@@ -1,0 +1,11 @@
+sudo yum install nginx npm node git 
+sudo git clone https://github.com/ohadah1/store-client.git ./
+npm install ./store-client/client/
+npm run --prefix ./store-client/client/ build
+npm install ./store-client/server/
+node ./store-client/server/src/app.js
+cp -R ./store-client/client/dist /usr/share/nginx/html/
+chmod -R 644 /usr/share/nginx/html/*
+chcon -R -u system_u -r object_r -t httpd_sys_content_t /usr/share/nginx/html/*
+systemctl enable nginx
+systemctl start nginx
