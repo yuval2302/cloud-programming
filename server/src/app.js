@@ -44,7 +44,21 @@ app.get('/order', (req, res) => {
     mysql.createQuery(sql, (val) => {
         res.send(val)
     });
-    res.send("hello");
+    let orders = [
+        {
+            id: 1,
+            date: '08.02.2020'
+        },
+        {
+            id: 2,
+            date: '05.02.2020'
+        },
+        {
+            id: 3,
+            date: '07.02.2020'
+        }
+    ];
+    res.send(orders);
 });
 
 app.post('/order', (req, res) => {

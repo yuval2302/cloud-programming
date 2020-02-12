@@ -1,25 +1,13 @@
 import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class OrdersService {
 
-  constructor() {
+  constructor(private http: HttpClient) {
   }
 
   public getAllOrders() {
-    return [
-      {
-        id: 1,
-        date: '08.02.2020'
-      },
-      {
-        id: 2,
-        date: '05.02.2020'
-      },
-      {
-        id: 3,
-        date: '07.02.2020'
-      }
-    ];
+    return this.http.get('http://localhost:3000/order', {responseType: 'json'});
   }
 }
