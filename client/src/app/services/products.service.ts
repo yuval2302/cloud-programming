@@ -16,18 +16,13 @@ export class ProductsDataService {
     const httpOptions = {
       headers: new HttpHeaders({
         'content-type':  'application/json',
-      })
+        responseType: 'json'
+      }),
     };
-    return this.http.delete(`http://localhost:3000/product/${id}`, httpOptions);
+    return this.http.post('http://localhost:3000/product/delete', id, {responseType: 'json'});
   }
 
   public save(product: Product): Observable<any> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'content-type':  'application/json',
-      })
-    };
-
     return this.http.post('http://localhost:3000/product', product, {responseType: 'json'});
   }
 }

@@ -137,12 +137,19 @@ app.post('/product', (req, res) => {
     res.send('Hello World!')
 });
 
-app.delete('/product', (req, res) => {
-    let productToDelete = req.params;
+app.post('/product/delete', (req, res) => {
+    let productId = req.body;
     // product id
-    let sql = `DELETE FROM product WHERE id = ${productToDelete};`;
+    let sql = `DELETE FROM product WHERE id = ${productId};`;
     res.send('Hello World!')
 });
+
+// app.delete('/product', (req, res) => {
+//     let productToDelete = req.params;
+//     // product id
+//     let sql = `DELETE FROM product WHERE id = ${productToDelete};`;
+//     res.send('Hello World!')
+// });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
