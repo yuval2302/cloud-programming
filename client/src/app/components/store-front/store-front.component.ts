@@ -3,6 +3,7 @@ import {Product} from '../../models/product.model';
 import {ProductsDataService} from '../../services/products.service';
 import {ShoppingCartService} from '../../services/shopping-cart.service';
 import {Observable, Observer} from 'rxjs';
+import {OrdersService} from "../../services/orders.service";
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -14,7 +15,8 @@ export class StoreFrontComponent implements OnInit {
   public products: Observable<Product[]>;
 
   public constructor(private productsService: ProductsDataService,
-                     private shoppingCartService: ShoppingCartService) {
+                     private shoppingCartService: ShoppingCartService,
+                     private orderService: OrdersService) {
   }
 
   public addProductToCart(product: Product): void {
@@ -39,5 +41,6 @@ export class StoreFrontComponent implements OnInit {
 
   public ngOnInit(): void {
     this.products = this.productsService.all();
+    this.orderService.getAllOrders();
   }
 }

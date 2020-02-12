@@ -5,6 +5,7 @@ import {ShoppingCart} from '../../models/shopping-cart.model';
 import {ProductsDataService} from '../../services/products.service';
 import {ShoppingCartService} from '../../services/shopping-cart.service';
 import {Observable, Subscription} from 'rxjs';
+import {OrdersService} from "../../services/orders.service";
 
 interface ICartItemWithProduct extends CartItem {
   product: Product;
@@ -25,7 +26,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   private cartSubscription: Subscription;
 
   public constructor(private productsService: ProductsDataService,
-                     private shoppingCartService: ShoppingCartService) {
+                     private shoppingCartService: ShoppingCartService,
+                     private orderService: OrdersService) {
   }
 
   public emptyCart(): void {
@@ -55,5 +57,9 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     if (this.cartSubscription) {
       this.cartSubscription.unsubscribe();
     }
+  }
+
+  public saveOrder() {
+    this.orderService.newOrder();
   }
 }

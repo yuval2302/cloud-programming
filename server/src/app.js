@@ -65,7 +65,26 @@ app.post('/order', (req, res) => {
     let newOrder = req.body;
     // order number and date
     let sql = `INSERT INTO order VALUES ();`;
-    res.send('Hello World!')
+    console.log("save new order");
+    let orders = [
+        {
+            id: 1,
+            date: '08.02.2020'
+        },
+        {
+            id: 2,
+            date: '05.02.2020'
+        },
+        {
+            id: 3,
+            date: '07.02.2020'
+        },
+        {
+            id: 4,
+            date: '12.02.2020'
+        }
+    ];
+    res.send(orders);
 });
 
 app.get('/product', (req, res) => {
