@@ -25,8 +25,8 @@ app.use(function (req, res, next) {
 var mysql = require('mysql');
 
 var con = mysql.createConnection({
-    host: "database-1.c0otnxcm1jip.us-east-1.rds.amazonaws.com",
-    user: "root",
+    host: "storeclientdb.cala6uvyezje.us-east-1.rds.amazonaws.com",
+    user: "admin",
     password: "Aa123456",
 });
 
@@ -40,7 +40,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/order', (req, res) => {
-    let sql = "SELECT * from order;";
+    let sql = "SELECT * from ORDERS;";
     mysql.createQuery(sql, (val) => {
         res.send(val)
     });
@@ -64,7 +64,7 @@ app.get('/order', (req, res) => {
 app.post('/order', (req, res) => {
     let newOrder = req.body;
     // order number and date
-    let sql = `INSERT INTO order VALUES ();`;
+    let sql = `INSERT INTO ORDERS VALUES ();`;
     console.log("save new order");
     let orders = [
         {
@@ -88,7 +88,7 @@ app.post('/order', (req, res) => {
 });
 
 app.get('/product', (req, res) => {
-    let sql = "SELECT * from product;";
+    let sql = "SELECT * from PRODUCTS;";
     let products = [
         {
             'id': '9aa113b4-1e4e-4cde-bf9d-8358fc78ea4f',
@@ -133,14 +133,14 @@ app.get('/product', (req, res) => {
 app.post('/product', (req, res) => {
     let newProduct = req.body;
     // name, amount and cost
-    let sql = `INSERT INTO product VALUES ();`;
+    let sql = `INSERT INTO PRODUCTS VALUES ();`;
     res.send('Hello World!')
 });
 
 app.post('/product/delete', (req, res) => {
     let productId = req.body;
     // product id
-    let sql = `DELETE FROM product WHERE id = ${productId};`;
+    let sql = `DELETE FROM PRODUCTS WHERE id = ${productId};`;
     res.send('Hello World!')
 });
 
