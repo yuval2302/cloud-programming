@@ -3,6 +3,7 @@ sudo yum install -y nginx
 sudo yum install -y npm
 sudo yum install -y node 
 sudo yum install -y git 
+sudo ssh-keygen -R github.com >> /root/.ssh/known_hosts
 sudo git clone https://github.com/ohadah1/store-client.git /home/ec2-user/.
 sudo npm install /home/ec2-user/store-client/client/
 sudo npm run --prefix /home/ec2-user/store-client/client/ build
