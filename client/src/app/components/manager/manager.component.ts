@@ -18,6 +18,9 @@ export class ManagerComponent implements OnInit {
 
   public ngOnInit(): void {
     this.products = this.productsService.all();
+    this.products.subscribe(x => {
+      console.log(x);
+    })
   }
 
   public onDelete(id: string) {
@@ -29,6 +32,7 @@ export class ManagerComponent implements OnInit {
   public onSave() {
     this.productsService.save(this.newProduct).subscribe(value => {
       this.products = this.productsService.all();
+      this.changeView(false);
     });
   }
 

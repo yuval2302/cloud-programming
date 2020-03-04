@@ -87,15 +87,24 @@ app.get('/product', (req, res) => {
 app.post('/product', (req, res) => {
     let newProduct = req.body;
     // name, amount and cost
-    let sql = `INSERT INTO PRODUCTS VALUES ();`;
-    res.send('Hello World!')
+    let sql = `INSERT INTO PRODUCTS VALUES ('${uid.v1()}','${newProduct.name}','${newProduct.description}', ${newProduct.price}, ${newProduct.quantity});`;
+    con.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log(result);
+        console.log("save new product");
+        res.send(result);
+    });
 });
 
 app.post('/product/delete', (req, res) => {
-    let productId = req.body;
+    let productId = req.body.id;
     // product id
-    let sql = `DELETE FROM PRODUCTS WHERE id = ${productId};`;
-    res.send('Hello World!')
+    let sql = `DELETE FROM PRODUCTS WHERE id = '${productId}';`;
+    con.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log(result);
+        res.send(result);
+    });
 });
 
 // app.delete('/product', (req, res) => {

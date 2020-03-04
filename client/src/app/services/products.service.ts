@@ -19,7 +19,7 @@ export class ProductsDataService {
         responseType: 'json'
       }),
     };
-    return this.http.post('http://localhost:3000/product/delete', id, {responseType: 'json'});
+    return this.http.post('http://localhost:3000/product/delete', {id}, {responseType: 'json'});
   }
 
   public save(product: Product): Observable<any> {
