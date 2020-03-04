@@ -31,12 +31,6 @@ export class ShoppingCartService {
     });
   }
 
-  public saveOrder() {
-    this.http.get('http://localhost:3000/order', {responseType: 'text'}).subscribe(res => {
-      alert(res);
-    }, err => console.log(err));
-  }
-
   public get(): Observable<ShoppingCart> {
     return this.subscriptionObservable;
   }

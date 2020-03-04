@@ -15,8 +15,7 @@ export class StoreFrontComponent implements OnInit {
   public products: Observable<Product[]>;
 
   public constructor(private productsService: ProductsDataService,
-                     private shoppingCartService: ShoppingCartService,
-                     private orderService: OrdersService) {
+                     private shoppingCartService: ShoppingCartService) {
   }
 
   public addProductToCart(product: Product): void {
@@ -41,6 +40,5 @@ export class StoreFrontComponent implements OnInit {
 
   public ngOnInit(): void {
     this.products = this.productsService.all();
-    this.orderService.getAllOrders();
   }
 }

@@ -11,6 +11,5 @@ export class OrderConfirmationComponent implements OnInit {
 
   public ngOnInit(): void {
     this.shoppingCartService.empty();
-    this.shoppingCartService.saveOrder();
   }
 }

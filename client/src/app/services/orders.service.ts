@@ -8,9 +8,7 @@ export class OrdersService {
   }
 
   public getAllOrders() {
-    this.http.get('http://localhost:3000/order', {responseType: 'json'}).subscribe(orders => {
-      this.orders = orders;
-    })
+    return this.http.get('http://localhost:3000/order', {responseType: 'json'})
   }
 
   public newOrder(): void {
