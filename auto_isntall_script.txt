@@ -15,4 +15,4 @@ sudo chmod -R 644 /usr/share/nginx/html/*
 sudo chcon -R -u system_u -r object_r -t httpd_sys_content_t /usr/share/nginx/html/*
 sudo systemctl enable nginx
 sudo systemctl start nginx
-sudo node /home/ec2-user/store/server/src/app.js
+sudo node /home/ec2-user/store/server/src/app.js &
