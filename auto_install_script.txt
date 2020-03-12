@@ -2,11 +2,8 @@
 sudo yum install -y nginx 
 sudo yum install -y npm
 sudo yum install -y nodejs.x86_64
-sudo yum install -y git 
-sudo mkdir /home/ec2-user/store
-sudo git clone https://fungroup123:Ohad123123\!@github.com/ohadah1/store-client.git /home/ec2-user/store/.
 sudo npm install --prefix /home/ec2-user/store/client/
-alias ng="/home/ec2-user/store/client/node_modules/@angular/cli/bin/ng"
+sudo alias ng="/home/ec2-user/store/client/node_modules/@angular/cli/bin/ng"
 sudo npm run --prefix /home/ec2-user/store/client/ build
 sudo npm install /home/ec2-user/store/server/
 sudo rm -rf /usr/share/nginx/html/.

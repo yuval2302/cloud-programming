@@ -1,0 +1,6 @@
+#!/bin/bash
+sudo yum install -y git 
+sudo mkdir /home/ec2-user/store
+sudo git clone https://fungroup123:Ohad123123\!@github.com/ohadah1/store-client.git /home/ec2-user/store/.
+sudo chmod 777 /home/ec2-user/store/auto_install_script.txt
+sudo source ./home/ec2-user/store/auto_install_script.txt
