@@ -1,13 +1,12 @@
-CREATE TABLE PRODUCT (
-    ID int AUTO_INCREMENT primary key,
-    NAME varchar(40) not null,
-    DESCRIPTION varchar(255),
-    PRICE double not null,
-    QUANTITY int not null default 0
+CREATE TABLE PRODUCTS (
+    id varchar(100) not null,
+    name varchar(40) not null,
+    description varchar(255),
+    price double not null,
+    quantity int not null default 0
 );
 
-CREATE TABLE order (
-    ID int AUTO_INCREMENT primary key,
-    DATE timestamp
-    TOTAL_PRICE double not null,
+CREATE TABLE ORDERS (
+    id varchar(100) not null,
+    date varchar(100) not null
 );
