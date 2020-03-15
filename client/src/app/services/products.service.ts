@@ -9,7 +9,7 @@ export class ProductsDataService {
   }
 
   public all(): Observable<any> {
-    return this.http.get('http://web-server-lb-1866696458.us-east-1.elb.amazonaws.com:3000/product', {responseType: 'json'});
+    return this.http.get('master-lb-1210004499.us-east-1.elb.amazonaws.com:3000/product', {responseType: 'json'});
   }
 
   public delete(id: string): Observable<any> {
@@ -19,10 +19,10 @@ export class ProductsDataService {
         responseType: 'json'
       }),
     };
-    return this.http.post('http://web-server-lb-1866696458.us-east-1.elb.amazonaws.com:3000/product/delete', {id}, {responseType: 'json'});
+    return this.http.post('master-lb-1210004499.us-east-1.elb.amazonaws.com:3000/product/delete', {id}, {responseType: 'json'});
   }
 
   public save(product: Product): Observable<any> {
-    return this.http.post('http://web-server-lb-1866696458.us-east-1.elb.amazonaws.com:3000/product', product, {responseType: 'json'});
+    return this.http.post('master-lb-1210004499.us-east-1.elb.amazonaws.com:3000/product', product, {responseType: 'json'});
   }
 }
